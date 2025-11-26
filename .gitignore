@@ -59,6 +59,18 @@ htmlcov/
 # React / Node.js (NEW)
 ###############################################
 
+# Reference and deployment documentation (local only)
+DEPLOYMENT_GUIDE.md
+DEPLOYMENT_QUICK_REFERENCE.md
+DEPLOYMENT_CONFIG_SUMMARY.md
+PRE_DEPLOYMENT_CHECKLIST.md
+COMPLETION_SUMMARY.txt
+PHASES_1_TO_4_COMPLETE.md
+APPLICATION_FLOW_HINGLISH.md
+BOOKING_API_FIX.md
+CONSOLE_LOGGING_GUIDE.md
+DEBUGGING_REGISTRATION.md
+SHOWCASE_GUIDE.md
 # Node modules
 node_modules/
 
