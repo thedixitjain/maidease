@@ -1,0 +1,195 @@
+/* Modern Maid Detail Styles */
+.maid-detail-container {
+  padding-bottom: 4rem;
+}
+
+.profile-header-section {
+  background: linear-gradient(to bottom, white, var(--slate-50));
+  border-bottom: 1px solid var(--slate-200);
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.back-link-wrapper {
+  max-width: 1000px;
+  margin: 0 auto 2rem;
+  text-align: left;
+}
+
+.profile-avatar-large {
+  width: 96px;
+  height: 96px;
+  background: var(--primary-100);
+  color: var(--primary-600);
+  font-size: 2.5rem;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  border: 4px solid white;
+  box-shadow: var(--shadow-md);
+}
+
+.profile-name {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--slate-900);
+  margin-bottom: 0.5rem;
+}
+
+.profile-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  color: var(--slate-500);
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Main Content Grid */
+.profile-content {
+  max-width: 1000px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--slate-900);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.section-card {
+  background: white;
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.about-text {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--slate-700);
+}
+
+/* Sidebar Stats */
+.stats-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.stat-card {
+  background: var(--slate-50);
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--slate-100);
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--slate-500);
+  margin-bottom: 0.25rem;
+}
+
+.stat-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--slate-900);
+}
+
+.stat-value.rate { color: var(--success); }
+
+.booking-cta-card {
+  position: sticky;
+  top: 100px;
+  background: white;
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--primary-100);
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+
+.cta-price {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--slate-900);
+  margin-bottom: 0.5rem;
+}
+
+.cta-unit {
+  font-size: 1rem;
+  color: var(--slate-500);
+  font-weight: 400;
+}
+
+.cta-guarantee {
+  font-size: 0.85rem;
+  color: var(--slate-500);
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* Reviews List */
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.review-item {
+  border-bottom: 1px solid var(--slate-100);
+  padding-bottom: 1.5rem;
+}
+
+.review-item:last-child { border-bottom: none; }
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.review-author {
+  font-weight: 600;
+  color: var(--slate-900);
+}
+
+.review-date {
+  color: var(--slate-400);
+  font-size: 0.85rem;
+}
+
+.review-text {
+  color: var(--slate-600);
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .profile-content { grid-template-columns: 1fr; }
+  .booking-cta-card { position: static; margin-bottom: 2rem; order: -1; }
+}
