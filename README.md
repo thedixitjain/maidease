@@ -1,6 +1,6 @@
 # MaidEase
 
-Trusted home-services marketplace connecting customers with verified professional maids. Full-stack project focused on clarity, trust, and smooth booking flows.
+Trusted home services marketplace connecting customers with verified professional maids. Built as a full-stack project with a focus on clarity, trust, and smooth booking flows.
 
 ## Overview
 - Two-sided platform: customers discover and book; providers manage profiles and availability.

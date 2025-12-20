@@ -123,7 +123,7 @@ export const MaidsList = () => {
               onChange={(e) => handleFilterChange('minExperience', parseInt(e.target.value) || 0)}
             />
           </div>
-          
+
           <div className="filter-group">
              {/* Spacer for alignment */}
           </div>
@@ -149,59 +149,59 @@ export const MaidsList = () => {
 
       {/* 4. Maid Cards Grid */}
       {!loading && !error && (
-        <div className="maids-grid">
-          {filteredMaids.length > 0 ? (
-            filteredMaids.map((maid) => (
-              <div key={maid.id} className="maid-card">
-                <div className="maid-header">
+      <div className="maids-grid">
+        {filteredMaids.length > 0 ? (
+          filteredMaids.map((maid) => (
+            <div key={maid.id} className="maid-card">
+              <div className="maid-header">
                   <div>
-                    <h3>{maid.full_name}</h3>
+                <h3>{maid.full_name}</h3>
                     <div style={{fontSize: '0.85rem', color: 'var(--slate-500)'}}>
                       {maid.skills ? maid.skills.split(',')[0] : 'Professional Maid'}
                     </div>
                   </div>
-                  <div className="rating">
-                    {renderStars(maid.average_rating || 0)}
-                    <span className="rating-value">
+                <div className="rating">
+                  {renderStars(maid.average_rating || 0)}
+                  <span className="rating-value">
                       {maid.average_rating ? maid.average_rating.toFixed(1) : 'New'}
-                    </span>
-                  </div>
+                  </span>
                 </div>
+              </div>
 
                 <p className="maid-bio">
                   {maid.bio || "Dedicated professional with verified experience ready to help with your household needs."}
                 </p>
 
-                <div className="maid-details">
-                  <div className="detail">
+              <div className="maid-details">
+                <div className="detail">
                     <span className="label">Rate</span>
                     <span className="value" style={{color: 'var(--success)', fontWeight: '700'}}>
                       ${maid.hourly_rate}/hr
                     </span>
-                  </div>
-                  <div className="detail">
-                    <span className="label">Experience</span>
-                    <span className="value">{maid.experience_years} years</span>
-                  </div>
-                  <div className="detail">
-                    <span className="label">Availability</span>
-                    <span className="value">
-                      {maid.availability_schedule ? 'Partial' : 'Full-time'}
-                    </span>
-                  </div>
                 </div>
-
-                <div className="maid-actions">
-                  <Link to={`/maid/${maid.id}`} className="btn btn-view">
-                    Profile
-                  </Link>
-                  <Link to={`/book/${maid.id}`} className="btn btn-book">
-                    Book Now
-                  </Link>
+                <div className="detail">
+                    <span className="label">Experience</span>
+                  <span className="value">{maid.experience_years} years</span>
+                </div>
+                <div className="detail">
+                    <span className="label">Availability</span>
+                  <span className="value">
+                      {maid.availability_schedule ? 'Partial' : 'Full-time'}
+                  </span>
                 </div>
               </div>
-            ))
-          ) : (
+
+              <div className="maid-actions">
+                <Link to={`/maid/${maid.id}`} className="btn btn-view">
+                    Profile
+                </Link>
+                <Link to={`/book/${maid.id}`} className="btn btn-book">
+                  Book Now
+                </Link>
+              </div>
+            </div>
+          ))
+        ) : (
             <div className="no-results text-center" style={{gridColumn: '1 / -1', padding: '4rem'}}>
               <h3>No matches found</h3>
               <p>Try adjusting your price range or filters to see more professionals.</p>
@@ -211,9 +211,9 @@ export const MaidsList = () => {
               >
                 Clear all filters
               </button>
-            </div>
-          )}
-        </div>
+          </div>
+        )}
+      </div>
       )}
     </div>
   );
