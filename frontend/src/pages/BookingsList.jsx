@@ -26,24 +26,24 @@ export const BookingsList = () => {
     try {
       setLoading(true);
       setError(null);
-      
+
       console.log('User role:', user?.role);
-      
+
       const response =
         user?.role === 'maid'
           ? await bookingAPI.getMaidBookings()
           : await bookingAPI.getMyBookings();
-      
+
       console.log('Bookings response:', response);
       console.log('Bookings data:', response.data);
-      
+
       setBookings(response.data || []);
-      
+
       // Check which bookings have reviews (for customers)
       if (user?.role === 'customer' && response.data) {
         const completedBookings = response.data.filter(b => b.status === 'completed');
         const reviewStatus = new Set();
-        
+
         for (const booking of completedBookings) {
           try {
             const checkRes = await reviewAPI.checkReviewExists(booking.id);
@@ -55,7 +55,7 @@ export const BookingsList = () => {
             console.warn(`Error checking review for booking ${booking.id}:`, err);
           }
         }
-        
+
         setReviewedBookings(reviewStatus);
       }
     } catch (err) {
@@ -168,7 +168,7 @@ export const BookingsList = () => {
             <div key={booking.id} className="booking-card-detail">
               <div className="booking-header">
                 <h3>
-                  {user?.role === 'maid' 
+                  {user?.role === 'maid'
                     ? booking.customer?.full_name || 'Unknown Customer'
                     : booking.maid?.full_name || 'Unknown Maid'
                   }
@@ -294,19 +294,36 @@ export const BookingsList = () => {
         </div>
       ) : (
         <div className="no-bookings">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="64"
+            height="64"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            style={{ color: 'var(--slate-400)', marginBottom: '1.5rem' }}
+          >
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
           <p>
             {user?.role === 'maid'
-              ? 'No bookings yet. Explore the app!'
-              : 'No bookings yet. Start your first booking!'
+              ? 'No bookings yet. Explore available jobs!'
+              : 'You have no active bookings. Find a professional today.'
             }
           </p>
           {user?.role === 'maid' ? (
             <a href="/" className="btn btn-primary">
-              Explore Bookings
+              Browse Opportunities
             </a>
           ) : (
             <a href="/maids" className="btn btn-primary">
-              Start Booking
+              Book a Professional
             </a>
           )}
         </div>
