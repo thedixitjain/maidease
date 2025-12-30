@@ -4,7 +4,7 @@ services:
     runtime: python
     pythonVersion: 3.10
     buildCommand: "pip install --upgrade pip && pip install -r requirements.txt"
-    startCommand: "uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    startCommand: "gunicorn app.main:app -w 4 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT --timeout 120"
     envVars:
       - key: DEBUG
         value: "False"
@@ -16,3 +16,26 @@ services:
         sync: false
       - key: CORS_ORIGINS
         value: "https://maidease-two.vercel.app,http://localhost:5173,http://localhost:3000"
+      # Database Pool Settings (optimized for 1000+ concurrent users)
+      - key: DB_POOL_SIZE
+        value: "20"
+      - key: DB_MAX_OVERFLOW
+        value: "40"
+      - key: DB_POOL_TIMEOUT
+        value: "30"
+      - key: DB_POOL_RECYCLE
+        value: "1800"
+      # Rate Limiting
+      - key: RATE_LIMIT_REQUESTS
+        value: "100"
+      - key: RATE_LIMIT_WINDOW
+        value: "60"
+      # Demo Account Configuration
+      - key: DEMO_ENABLED
+        value: "True"
+      - key: DEMO_CUSTOMER_EMAIL
+        value: "demo.customer@maidease.com"
+      - key: DEMO_MAID_EMAIL
+        value: "demo.maid@maidease.com"
+      - key: DEMO_PASSWORD
+        sync: false

@@ -21,10 +21,27 @@ class Settings(BaseSettings):
     # Database - from Supabase
     DATABASE_URL: str
     
+    # Database Pool Settings (for 1000+ concurrent users)
+    DB_POOL_SIZE: int = 20
+    DB_MAX_OVERFLOW: int = 40
+    DB_POOL_TIMEOUT: int = 30
+    DB_POOL_RECYCLE: int = 1800  # Recycle connections after 30 minutes
+    
     # Security
     SECRET_KEY: str
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+    REFRESH_TOKEN_EXPIRE_DAYS: int = 7
+    
+    # Rate Limiting
+    RATE_LIMIT_REQUESTS: int = 100  # requests per window
+    RATE_LIMIT_WINDOW: int = 60  # window in seconds
+    
+    # Demo Account Configuration
+    DEMO_CUSTOMER_EMAIL: str = "demo.customer@maidease.com"
+    DEMO_MAID_EMAIL: str = "demo.maid@maidease.com"
+    DEMO_PASSWORD: str = "DemoPass123"
+    DEMO_ENABLED: bool = True
 
     # Optional: provide comma-separated CORS origins via .env as CORS_ORIGINS=...
     # (We parse it below into BACKEND_CORS_ORIGINS)

@@ -79,3 +79,142 @@
   gap: 0.5rem;
 }
 
+/* Demo Login Section */
+.demo-section {
+  margin-bottom: 1.5rem;
+  padding: 1.25rem;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border-radius: var(--radius-lg);
+  border: 1px solid #bae6fd;
+}
+
+.demo-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.demo-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+  color: white;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+}
+
+.demo-subtitle {
+  color: #0369a1;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.demo-buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn-demo {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.btn-demo:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-demo-customer {
+  background: white;
+  border-color: #0ea5e9;
+  color: #0369a1;
+}
+
+.btn-demo-customer:hover:not(:disabled) {
+  background: #f0f9ff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
+}
+
+.btn-demo-maid {
+  background: white;
+  border-color: #10b981;
+  color: #047857;
+}
+
+.btn-demo-maid:hover:not(:disabled) {
+  background: #ecfdf5;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.demo-icon {
+  font-size: 1.5rem;
+}
+
+.demo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.demo-text strong {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.demo-text small {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+.demo-divider {
+  display: flex;
+  align-items: center;
+  margin-top: 1.25rem;
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+.demo-divider::before,
+.demo-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #cbd5e1;
+}
+
+.demo-divider span {
+  padding: 0 0.75rem;
+}
+
+.loading-spinner {
+  animation: spin 1s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .demo-buttons {
+    flex-direction: column;
+  }
+  
+  .btn-demo {
+    justify-content: center;
+  }
+}
+

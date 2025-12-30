@@ -14,6 +14,10 @@ export const authAPI = {
     });
   },
   refresh: (refreshToken) => api.post('/auth/refresh', { refresh_token: refreshToken }),
+  
+  // Demo login endpoints
+  getDemoCredentials: () => api.get('/auth/demo/credentials'),
+  demoLogin: (role = 'customer') => api.post(`/auth/demo/login?role=${role}`),
 };
 
 // User endpoints

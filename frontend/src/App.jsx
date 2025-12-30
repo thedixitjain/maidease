@@ -3,6 +3,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import { ProtectedRoute, RoleBasedRoute } from './components/ProtectedRoute';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
+import { DemoBanner } from './components/DemoBanner';
 
 // Pages
 import { Login } from './pages/Login';
@@ -22,6 +23,7 @@ function App() {
     <Router>
       <AuthProvider>
         <div className="app">
+          <DemoBanner />
           <Header />
           <main className="main-content">
           <Routes>

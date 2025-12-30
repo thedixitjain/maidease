@@ -1,6 +1,39 @@
 -- MaidEase Database Seed Data
 -- Insert sample data for testing
 
+-- Insert Demo Accounts (for recruiters and potential users)
+-- Password: DemoPass123 (hashed with Argon2)
+-- Note: The backend will auto-create these on startup, but this ensures they exist in fresh DB setups
+INSERT INTO users (email, hashed_password, full_name, phone_number, role, is_active, bio, skills, experience_years, hourly_rate, average_rating)
+VALUES 
+    (
+        'demo.customer@maidease.com',
+        '$argon2id$v=19$m=65536,t=3,p=4$demo_salt_placeholder$demo_hash_placeholder',
+        'Demo Customer',
+        '+1-555-DEMO-001',
+        'customer',
+        true,
+        NULL,
+        NULL,
+        NULL,
+        NULL,
+        NULL
+    ),
+    (
+        'demo.maid@maidease.com',
+        '$argon2id$v=19$m=65536,t=3,p=4$demo_salt_placeholder$demo_hash_placeholder',
+        'Demo Service Provider',
+        '+1-555-DEMO-002',
+        'maid',
+        true,
+        'Demo account for exploring MaidEase platform features. This is a sample service provider profile.',
+        'House Cleaning, Deep Cleaning, Organization, Laundry',
+        3,
+        25.00,
+        4.5
+    )
+ON CONFLICT (email) DO NOTHING;
+
 -- Insert test customers
 INSERT INTO users (email, hashed_password, full_name, phone_number, role, is_active)
 VALUES 

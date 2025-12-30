@@ -56,12 +56,20 @@ CREATE TABLE IF NOT EXISTS reviews (
 -- Create indexes for better query performance
 CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
 CREATE INDEX IF NOT EXISTS idx_users_role ON users(role);
+CREATE INDEX IF NOT EXISTS idx_users_is_active ON users(is_active);
+CREATE INDEX IF NOT EXISTS idx_users_role_active ON users(role, is_active);
+CREATE INDEX IF NOT EXISTS idx_users_average_rating ON users(average_rating DESC);
 CREATE INDEX IF NOT EXISTS idx_bookings_customer ON bookings(customer_id);
 CREATE INDEX IF NOT EXISTS idx_bookings_maid ON bookings(maid_id);
 CREATE INDEX IF NOT EXISTS idx_bookings_status ON bookings(status);
 CREATE INDEX IF NOT EXISTS idx_bookings_date ON bookings(booking_date);
+CREATE INDEX IF NOT EXISTS idx_bookings_customer_status ON bookings(customer_id, status);
+CREATE INDEX IF NOT EXISTS idx_bookings_maid_status ON bookings(maid_id, status);
+CREATE INDEX IF NOT EXISTS idx_bookings_created_at ON bookings(created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_reviews_customer ON reviews(customer_id);
 CREATE INDEX IF NOT EXISTS idx_reviews_maid ON reviews(maid_id);
+CREATE INDEX IF NOT EXISTS idx_reviews_maid_rating ON reviews(maid_id, rating);
+CREATE INDEX IF NOT EXISTS idx_reviews_created_at ON reviews(created_at DESC);
 
 -- Enable Row Level Security (optional - recommended for security)
 -- ALTER TABLE users ENABLE ROW LEVEL SECURITY;

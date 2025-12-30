@@ -6,6 +6,7 @@ from app.database import get_db
 from app.schemas.user import UserCreate, UserResponse
 from app.schemas.token import Token, TokenRefresh
 from app.services.auth_service import AuthService
+from app.services.demo_service import DemoService
 from app.core.config import settings
 import logging
 
@@ -57,6 +58,80 @@ def login(
         data={"user_id": str(user.id), "email": user.email, "role": user.role.value},
         expires_delta=access_token_expires
     )
+    
+    return {
+        "access_token": access_token,
+        "refresh_token": refresh_token,
+        "token_type": "bearer"
+    }
+
+
+@router.get("/demo/credentials")
+def get_demo_credentials(db: Session = Depends(get_db)):
+    """
+    Get demo account credentials for easy access.
+    Returns demo login information for recruiters and potential users.
+    """
+    if not settings.DEMO_ENABLED:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Demo mode is not enabled"
+        )
+    
+    demo_service = DemoService(db)
+    # Ensure demo accounts exist
+    demo_service.ensure_demo_accounts_exist()
+    
+    return demo_service.get_demo_credentials()
+
+
+@router.post("/demo/login", response_model=Token)
+def demo_login(
+    role: str = "customer",
+    db: Session = Depends(get_db)
+):
+    """
+    Quick demo login without entering credentials.
+    Accepts role parameter: 'customer' or 'maid'
+    """
+    if not settings.DEMO_ENABLED:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Demo mode is not enabled"
+        )
+    
+    # Validate role
+    if role not in ["customer", "maid"]:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Invalid role. Use 'customer' or 'maid'"
+        )
+    
+    demo_service = DemoService(db)
+    demo_service.ensure_demo_accounts_exist()
+    
+    # Get demo credentials
+    email = settings.DEMO_CUSTOMER_EMAIL if role == "customer" else settings.DEMO_MAID_EMAIL
+    password = settings.DEMO_PASSWORD
+    
+    # Authenticate
+    auth_service = AuthService(db)
+    user = auth_service.authenticate_user(email, password)
+    
+    if not user:
+        logger.error(f"Demo login failed for role: {role}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Demo account authentication failed"
+        )
+    
+    access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token, refresh_token = auth_service.create_tokens(
+        data={"user_id": str(user.id), "email": user.email, "role": user.role.value},
+        expires_delta=access_token_expires
+    )
+    
+    logger.info(f"Demo login successful: role={role}, email={email}")
     
     return {
         "access_token": access_token,
