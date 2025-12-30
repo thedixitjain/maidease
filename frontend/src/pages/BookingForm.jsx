@@ -100,7 +100,11 @@ export const BookingForm = () => {
     return (
       <div className="booking-form-container">
         <div className="booking-wizard-card success-view">
-          <div className="success-icon">✓</div>
+          <div className="success-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="48" height="48">
+              <path d="M20 6L9 17l-5-5"/>
+            </svg>
+          </div>
           <h2 className="success-title">Booking Confirmed!</h2>
           <p className="success-text">
             Your request has been sent to <strong>{maid?.full_name}</strong>.
@@ -119,11 +123,11 @@ export const BookingForm = () => {
       {/* Wizard Steps Indicator */}
       <div className="wizard-steps">
         <div className={`step-indicator ${currentStep >= 1 ? 'active' : ''} ${currentStep > 1 ? 'completed' : ''}`}>
-          <div className="step-number">{currentStep > 1 ? '✓' : '1'}</div>
+          <div className="step-number">{currentStep > 1 ? '' : '1'}</div>
           <div className="step-label">Service</div>
         </div>
         <div className={`step-indicator ${currentStep >= 2 ? 'active' : ''} ${currentStep > 2 ? 'completed' : ''}`}>
-          <div className="step-number">{currentStep > 2 ? '✓' : '2'}</div>
+          <div className="step-number">{currentStep > 2 ? '' : '2'}</div>
           <div className="step-label">Schedule</div>
         </div>
         <div className={`step-indicator ${currentStep >= 3 ? 'active' : ''}`}>

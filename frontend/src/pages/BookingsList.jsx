@@ -263,7 +263,7 @@ export const BookingsList = () => {
                       <>
                         {reviewedBookings.has(booking.id) ? (
                           <button className="btn btn-reviewed" disabled>
-                            ✓ Already Reviewed
+                            Reviewed
                           </button>
                         ) : (
                           <a href={`/review/${booking.id}`} className="btn btn-review">

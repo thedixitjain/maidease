@@ -134,7 +134,7 @@ export const ReviewForm = () => {
 
         {success && (
           <div className="success-message">
-            <p>✓ Review submitted successfully! Redirecting...</p>
+            <p>Review submitted successfully! Redirecting...</p>
           </div>
         )}
 

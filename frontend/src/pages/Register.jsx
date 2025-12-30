@@ -61,7 +61,7 @@ export const Register = () => {
           <p className="auth-subtitle">Join thousands of trusted users</p>
         </div>
 
-        {error && <div className="error-message">⚠️ {error}</div>}
+        {error && <div className="error-message">{error}</div>}
 
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="form-group">

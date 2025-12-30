@@ -72,6 +72,20 @@
   color: var(--slate-900);
 }
 
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: white;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--slate-200);
+}
+
+.empty-state p {
+  color: var(--slate-500);
+  margin-bottom: 1rem;
+}
+
 /* Profile Completion Prompt */
 .bio-prompt-banner {
   background: white;
@@ -169,10 +183,10 @@
   letter-spacing: 0.05em;
 }
 
-.booking-status[data-status="pending"] { background: var(--warning); color: white; }
-.booking-status[data-status="accepted"] { background: var(--primary-100); color: var(--primary-700); }
-.booking-status[data-status="completed"] { background: var(--success); color: white; }
-.booking-status[data-status="canceled"] { background: var(--slate-200); color: var(--slate-600); }
+.booking-status[data-status="pending"] { background: #fef3c7; color: #92400e; }
+.booking-status[data-status="accepted"] { background: #dbeafe; color: #1e40af; }
+.booking-status[data-status="completed"] { background: #d1fae5; color: #065f46; }
+.booking-status[data-status="canceled"] { background: #f1f5f9; color: #64748b; }
 
 .booking-actions {
   display: flex;

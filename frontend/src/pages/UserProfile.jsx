@@ -107,7 +107,7 @@ export const UserProfile = () => {
 
         {success && (
           <div className="success-message">
-            ✓ Profile updated successfully
+            Profile updated successfully
           </div>
         )}
 

@@ -73,7 +73,7 @@ export const MaidDetail = () => {
             <span>({reviews.length} reviews)</span>
           </div>
           <div className="meta-item">
-            <span>📍 {maid.availability_schedule || 'Flexible Schedule'}</span>
+            <span>{maid.availability_schedule || 'Flexible Schedule'}</span>
           </div>
         </div>
       </div>
@@ -134,7 +134,7 @@ export const MaidDetail = () => {
             </Link>
             
             <div className="cta-guarantee">
-              <span>🛡️</span> 100% Satisfaction Guarantee
+              100% Satisfaction Guarantee
             </div>
           </div>
 

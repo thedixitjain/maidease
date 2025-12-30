@@ -117,8 +117,8 @@ export const Dashboard = () => {
         {user?.role === 'maid' && !user.bio && (
           <div className="bio-prompt-banner">
             <div className="bio-prompt-content">
-              <h3>📝 Complete Your Profile</h3>
-              <p>Add a bio and skills to get 3x more bookings.</p>
+              <h3>Complete Your Profile</h3>
+              <p>Add a bio and skills to attract more customers.</p>
             </div>
             <div className="bio-prompt-actions">
               <button className="btn btn-primary" onClick={() => navigate('/profile')}>
@@ -149,9 +149,9 @@ export const Dashboard = () => {
                   <div className="booking-info">
                     <div className="booking-service">{booking.service_type.replace('_', ' ')}</div>
                     <div className="booking-meta">
-                      <span>📅 {new Date(booking.booking_date).toLocaleDateString()}</span>
-                      <span>⏰ {booking.time_slot}</span>
-                      <span>👤 {user?.role === 'maid' ? booking.customer?.full_name : booking.maid?.full_name}</span>
+                      <span>{new Date(booking.booking_date).toLocaleDateString()}</span>
+                      <span>{booking.time_slot}</span>
+                      <span>{user?.role === 'maid' ? booking.customer?.full_name : booking.maid?.full_name}</span>
                     </div>
                   </div>
                   <div className="booking-status" data-status={booking.status}>
@@ -161,8 +161,8 @@ export const Dashboard = () => {
               ))}
             </div>
           ) : (
-            <div className="text-center py-8 bg-white rounded-lg border border-slate-200">
-              <p className="text-slate-500 mb-4">No bookings found.</p>
+            <div className="empty-state">
+              <p>No bookings yet</p>
               {user?.role === 'customer' && (
                 <button className="btn btn-primary" onClick={() => navigate('/maids')}>
                   Find a Professional
@@ -179,7 +179,7 @@ export const Dashboard = () => {
           <div className="modal-content" onClick={e => e.stopPropagation()}>
             <div className="modal-header">
               <h2>Booking Details</h2>
-              <button className="modal-close" onClick={() => setSelectedBooking(null)}>✕</button>
+              <button className="modal-close" onClick={() => setSelectedBooking(null)}>×</button>
             </div>
             <div className="modal-body">
               <div className="detail-row">
