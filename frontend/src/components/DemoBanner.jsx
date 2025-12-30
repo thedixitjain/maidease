@@ -6,15 +6,13 @@ export const DemoBanner = () => {
 
   if (!isDemoUser) return null;
 
+  const role = user?.role === 'maid' ? 'provider' : 'customer';
+
   return (
     <div className="demo-banner">
-      <div className="demo-banner-content">
-        <span className="demo-banner-icon">🎯</span>
-        <span className="demo-banner-text">
-          You're using a <strong>demo account</strong> ({user?.role === 'maid' ? 'Service Provider' : 'Customer'}).
-          <a href="/register" className="demo-banner-link">Create your own account</a> to save your data.
-        </span>
-      </div>
+      <span>Demo mode ({role})</span>
+      <span className="demo-banner-separator">·</span>
+      <a href="/register">Create your account</a>
     </div>
   );
 };

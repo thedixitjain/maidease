@@ -5,22 +5,6 @@ import { authAPI, userAPI } from '../api/endpoints';
 import { setTokens } from '../api/client';
 import '../styles/Auth.css';
 
-// Demo credentials - always visible for recruiters
-const DEMO_CREDENTIALS = {
-  customer: {
-    email: 'demo.customer@maidease.com',
-    password: 'DemoPass123',
-    role: 'customer',
-    description: 'Browse & book services'
-  },
-  maid: {
-    email: 'demo.maid@maidease.com',
-    password: 'DemoPass123',
-    role: 'maid',
-    description: 'Manage bookings'
-  }
-};
-
 export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -49,37 +33,25 @@ export const Login = () => {
     setDemoLoading(role);
     setError(null);
 
-    const creds = DEMO_CREDENTIALS[role];
+    const credentials = {
+      customer: { email: 'demo.customer@maidease.com', password: 'DemoPass123' },
+      maid: { email: 'demo.maid@maidease.com', password: 'DemoPass123' }
+    };
 
     try {
-      // Try the quick demo login endpoint first
-      try {
-        const response = await authAPI.demoLogin(role);
-        const { access_token, refresh_token } = response.data;
-        setTokens(access_token, refresh_token);
-      } catch {
-        // Fallback to regular login with demo credentials
-        const response = await authAPI.login(creds.email, creds.password);
-        const { access_token, refresh_token } = response.data;
-        setTokens(access_token, refresh_token);
-      }
+      const creds = credentials[role];
+      const response = await authAPI.login(creds.email, creds.password);
+      const { access_token, refresh_token } = response.data;
+      setTokens(access_token, refresh_token);
 
-      // Fetch user profile
       const userResponse = await userAPI.getProfile();
       updateProfile(userResponse.data);
-      
       navigate('/');
     } catch (err) {
-      setError(err.response?.data?.detail || 'Demo login failed. The demo account may not exist yet.');
+      setError('Demo login failed. Please try again.');
     } finally {
       setDemoLoading(null);
     }
-  };
-
-  const fillDemoCredentials = (role) => {
-    const creds = DEMO_CREDENTIALS[role];
-    setEmail(creds.email);
-    setPassword(creds.password);
   };
 
   return (
@@ -91,72 +63,6 @@ export const Login = () => {
         </div>
 
         {error && <div className="error-message">⚠️ {error}</div>}
-
-        {/* Demo Login Section - Always visible */}
-        <div className="demo-section">
-          <div className="demo-header">
-            <span className="demo-badge">🎯 Demo Access</span>
-            <p className="demo-subtitle">Try MaidEase without signing up</p>
-          </div>
-          <div className="demo-buttons">
-            <button
-              type="button"
-              className="btn btn-demo btn-demo-customer"
-              onClick={() => handleDemoLogin('customer')}
-              disabled={demoLoading !== null || loading}
-            >
-              {demoLoading === 'customer' ? (
-                <span className="loading-spinner">⏳</span>
-              ) : (
-                <>
-                  <span className="demo-icon">👤</span>
-                  <span className="demo-text">
-                    <strong>Demo as Customer</strong>
-                    <small>Browse & book services</small>
-                  </span>
-                </>
-              )}
-            </button>
-            <button
-              type="button"
-              className="btn btn-demo btn-demo-maid"
-              onClick={() => handleDemoLogin('maid')}
-              disabled={demoLoading !== null || loading}
-            >
-              {demoLoading === 'maid' ? (
-                <span className="loading-spinner">⏳</span>
-              ) : (
-                <>
-                  <span className="demo-icon">🧹</span>
-                  <span className="demo-text">
-                    <strong>Demo as Provider</strong>
-                    <small>Manage bookings</small>
-                  </span>
-                </>
-              )}
-            </button>
-          </div>
-          
-          {/* Demo Credentials Display */}
-          <div className="demo-credentials">
-            <p className="demo-credentials-title">Or use these credentials:</p>
-            <div className="demo-credentials-grid">
-              <div className="demo-credential-item" onClick={() => fillDemoCredentials('customer')}>
-                <span className="demo-credential-role">Customer:</span>
-                <span className="demo-credential-email">{DEMO_CREDENTIALS.customer.email}</span>
-              </div>
-              <div className="demo-credential-item" onClick={() => fillDemoCredentials('maid')}>
-                <span className="demo-credential-role">Provider:</span>
-                <span className="demo-credential-email">{DEMO_CREDENTIALS.maid.email}</span>
-              </div>
-            </div>
-            <p className="demo-credentials-password">Password: <code>DemoPass123</code></p>
-          </div>
-          
-          <div className="demo-divider">
-            <span>or login with your account</span>
-          </div>
-        </div>
 
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="form-group">
@@ -187,12 +93,36 @@ export const Login = () => {
             style={{width: '100%'}} 
             disabled={loading || demoLoading !== null}
           >
-            {loading ? 'Logging in...' : 'Sign In'}
+            {loading ? 'Signing in...' : 'Sign in'}
           </button>
         </form>
 
         <div className="auth-footer">
-          Don't have an account? <a href="/register">Sign up for free</a>
+          <span>Don't have an account?</span>
+          <a href="/register">Create account</a>
+        </div>
+
+        <div className="demo-access">
+          <p className="demo-access-label">Just exploring?</p>
+          <div className="demo-access-buttons">
+            <button
+              type="button"
+              className="demo-access-btn"
+              onClick={() => handleDemoLogin('customer')}
+              disabled={demoLoading !== null || loading}
+            >
+              {demoLoading === 'customer' ? 'Loading...' : 'Try as Customer'}
+            </button>
+            <span className="demo-access-divider">or</span>
+            <button
+              type="button"
+              className="demo-access-btn"
+              onClick={() => handleDemoLogin('maid')}
+              disabled={demoLoading !== null || loading}
+            >
+              {demoLoading === 'maid' ? 'Loading...' : 'Try as Provider'}
+            </button>
+          </div>
         </div>
       </div>
     </div>

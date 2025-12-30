@@ -1,56 +1,23 @@
 .demo-banner {
-  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-  border-bottom: 1px solid #f59e0b;
-  padding: 0.625rem 1rem;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.demo-banner-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-  color: #92400e;
-}
-
-.demo-banner-icon {
-  font-size: 1rem;
-}
-
-.demo-banner-text {
+  background: #fafafa;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 0.5rem 1rem;
   text-align: center;
+  font-size: 0.8rem;
+  color: #737373;
 }
 
-.demo-banner-text strong {
-  font-weight: 600;
+.demo-banner-separator {
+  margin: 0 0.5rem;
+  color: #d4d4d4;
 }
 
-.demo-banner-link {
-  color: #b45309;
-  font-weight: 600;
-  margin-left: 0.5rem;
+.demo-banner a {
+  color: #525252;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
-.demo-banner-link:hover {
-  color: #92400e;
-}
-
-@media (max-width: 640px) {
-  .demo-banner-content {
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-  
-  .demo-banner-link {
-    display: block;
-    margin-left: 0;
-    margin-top: 0.25rem;
-  }
+.demo-banner a:hover {
+  color: #171717;
 }
