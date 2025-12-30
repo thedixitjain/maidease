@@ -1,23 +1,35 @@
 .demo-banner {
-  background: #fafafa;
-  border-bottom: 1px solid #e5e5e5;
+  background: #fefce8;
+  border-bottom: 1px solid #fef08a;
   padding: 0.5rem 1rem;
   text-align: center;
   font-size: 0.8rem;
-  color: #737373;
+  color: #854d0e;
 }
 
 .demo-banner-separator {
   margin: 0 0.5rem;
-  color: #d4d4d4;
+  color: #fde047;
 }
 
 .demo-banner a {
-  color: #525252;
+  color: #a16207;
+  font-weight: 500;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
 .demo-banner a:hover {
-  color: #171717;
+  color: #854d0e;
+}
+
+@media (max-width: 480px) {
+  .demo-banner {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .demo-banner-separator {
+    margin: 0 0.375rem;
+  }
 }

@@ -242,3 +242,32 @@ body {
   }
 }
 
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+  
+  .main-content {
+    padding: 0.75rem 0;
+  }
+  
+  .btn {
+    padding: 0.625rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    padding: 0.625rem;
+    font-size: 16px; /* Prevents iOS zoom */
+  }
+  
+  .error-message,
+  .success-message,
+  .warning-message {
+    padding: 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+
