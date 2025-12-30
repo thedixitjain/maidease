@@ -177,6 +177,72 @@
   opacity: 0.8;
 }
 
+/* Demo Credentials Display */
+.demo-credentials {
+  margin-top: 1rem;
+  padding: 0.875rem;
+  background: white;
+  border-radius: var(--radius-md);
+  border: 1px dashed #93c5fd;
+}
+
+.demo-credentials-title {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.demo-credentials-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.demo-credential-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.5rem;
+  background: #f8fafc;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 0.8rem;
+}
+
+.demo-credential-item:hover {
+  background: #e0f2fe;
+}
+
+.demo-credential-role {
+  font-weight: 600;
+  color: #475569;
+  min-width: 70px;
+}
+
+.demo-credential-email {
+  color: #0369a1;
+  font-family: monospace;
+  font-size: 0.75rem;
+}
+
+.demo-credentials-password {
+  margin-top: 0.5rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.demo-credentials-password code {
+  background: #f1f5f9;
+  padding: 0.125rem 0.375rem;
+  border-radius: 4px;
+  font-family: monospace;
+  color: #0f172a;
+  font-weight: 600;
+}
+
 .demo-divider {
   display: flex;
   align-items: center;
